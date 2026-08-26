@@ -116,5 +116,5 @@ export async function notifyUser(userId: string, title: string, body: string, li
 }
 
 export async function notifyAdmins(title: string, body: string, link?: string) {
-  await supabase.rpc("notify_admins", { _title: title, _body: body, _link: link ?? null });
+  await supabase.rpc("notify_admins", { _title: title, _body: body, _link: link ?? "" });
 }
