@@ -22,9 +22,8 @@ type PublicTracking = {
 };
 
 export const Route = createFileRoute("/track")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    id: typeof search["id"] === "string" ? search["id"] : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { id?: string } =>
+    typeof search["id"] === "string" && search["id"] ? { id: search["id"] } : {},
   head: () => ({
     meta: [
       { title: "Track Your Parcel — SwiftParcel" },
@@ -39,7 +38,7 @@ export const Route = createFileRoute("/track")({
   component: TrackPage,
 });
 
-export function TrackPanel({ initialId }: { initialId?: string }) {
+export function TrackPanel({ initialId }: { initialId?: string | undefined }) {
   const [value, setValue] = useState(initialId ?? "");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<PublicTracking | null>(null);
