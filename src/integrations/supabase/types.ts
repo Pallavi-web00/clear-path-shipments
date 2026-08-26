@@ -14,16 +14,388 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      customers: {
+        Row: {
+          address: string | null
+          city: string | null
+          created_at: string
+          id: string
+          postal_code: string | null
+          state: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          address?: string | null
+          city?: string | null
+          created_at?: string
+          id?: string
+          postal_code?: string | null
+          state?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          address?: string | null
+          city?: string | null
+          created_at?: string
+          id?: string
+          postal_code?: string | null
+          state?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      driver_assignments: {
+        Row: {
+          accepted_at: string | null
+          assigned_at: string
+          assigned_by: string | null
+          driver_id: string
+          id: string
+          rejected_at: string | null
+          rejection_reason: string | null
+          shipment_id: string
+          status: string
+        }
+        Insert: {
+          accepted_at?: string | null
+          assigned_at?: string
+          assigned_by?: string | null
+          driver_id: string
+          id?: string
+          rejected_at?: string | null
+          rejection_reason?: string | null
+          shipment_id: string
+          status?: string
+        }
+        Update: {
+          accepted_at?: string | null
+          assigned_at?: string
+          assigned_by?: string | null
+          driver_id?: string
+          id?: string
+          rejected_at?: string | null
+          rejection_reason?: string | null
+          shipment_id?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "driver_assignments_shipment_id_fkey"
+            columns: ["shipment_id"]
+            isOneToOne: false
+            referencedRelation: "shipments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      drivers: {
+        Row: {
+          address: string | null
+          created_at: string
+          id: string
+          license_number: string | null
+          status: string
+          updated_at: string
+          user_id: string
+          vehicle_number: string | null
+          vehicle_type: string | null
+        }
+        Insert: {
+          address?: string | null
+          created_at?: string
+          id?: string
+          license_number?: string | null
+          status?: string
+          updated_at?: string
+          user_id: string
+          vehicle_number?: string | null
+          vehicle_type?: string | null
+        }
+        Update: {
+          address?: string | null
+          created_at?: string
+          id?: string
+          license_number?: string | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+          vehicle_number?: string | null
+          vehicle_type?: string | null
+        }
+        Relationships: []
+      }
+      notifications: {
+        Row: {
+          body: string | null
+          created_at: string
+          id: string
+          link: string | null
+          read: boolean
+          title: string
+          user_id: string
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string
+          id?: string
+          link?: string | null
+          read?: boolean
+          title: string
+          user_id: string
+        }
+        Update: {
+          body?: string | null
+          created_at?: string
+          id?: string
+          link?: string | null
+          read?: boolean
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          name: string
+          phone: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string
+          id: string
+          name?: string
+          phone?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          phone?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      shipments: {
+        Row: {
+          created_at: string
+          customer_id: string
+          delivered_at: string | null
+          delivery_location: string
+          delivery_notes: string | null
+          delivery_photo: string | null
+          delivery_signature: string | null
+          description: string | null
+          driver_id: string | null
+          estimated_value: number | null
+          expected_delivery_date: string | null
+          fragile: boolean
+          id: string
+          package_size: string | null
+          parcel_type: string | null
+          picked_up_at: string | null
+          pickup_date: string | null
+          pickup_location: string
+          quantity: number | null
+          receiver_address: string | null
+          receiver_city: string | null
+          receiver_email: string | null
+          receiver_name: string
+          receiver_phone: string | null
+          receiver_postal_code: string | null
+          receiver_state: string | null
+          sender_address: string | null
+          sender_city: string | null
+          sender_email: string | null
+          sender_name: string
+          sender_phone: string | null
+          sender_postal_code: string | null
+          sender_state: string | null
+          special_instructions: string | null
+          status: Database["public"]["Enums"]["shipment_status"]
+          tracking_id: string
+          updated_at: string
+          weight: number | null
+        }
+        Insert: {
+          created_at?: string
+          customer_id: string
+          delivered_at?: string | null
+          delivery_location?: string
+          delivery_notes?: string | null
+          delivery_photo?: string | null
+          delivery_signature?: string | null
+          description?: string | null
+          driver_id?: string | null
+          estimated_value?: number | null
+          expected_delivery_date?: string | null
+          fragile?: boolean
+          id?: string
+          package_size?: string | null
+          parcel_type?: string | null
+          picked_up_at?: string | null
+          pickup_date?: string | null
+          pickup_location?: string
+          quantity?: number | null
+          receiver_address?: string | null
+          receiver_city?: string | null
+          receiver_email?: string | null
+          receiver_name?: string
+          receiver_phone?: string | null
+          receiver_postal_code?: string | null
+          receiver_state?: string | null
+          sender_address?: string | null
+          sender_city?: string | null
+          sender_email?: string | null
+          sender_name?: string
+          sender_phone?: string | null
+          sender_postal_code?: string | null
+          sender_state?: string | null
+          special_instructions?: string | null
+          status?: Database["public"]["Enums"]["shipment_status"]
+          tracking_id: string
+          updated_at?: string
+          weight?: number | null
+        }
+        Update: {
+          created_at?: string
+          customer_id?: string
+          delivered_at?: string | null
+          delivery_location?: string
+          delivery_notes?: string | null
+          delivery_photo?: string | null
+          delivery_signature?: string | null
+          description?: string | null
+          driver_id?: string | null
+          estimated_value?: number | null
+          expected_delivery_date?: string | null
+          fragile?: boolean
+          id?: string
+          package_size?: string | null
+          parcel_type?: string | null
+          picked_up_at?: string | null
+          pickup_date?: string | null
+          pickup_location?: string
+          quantity?: number | null
+          receiver_address?: string | null
+          receiver_city?: string | null
+          receiver_email?: string | null
+          receiver_name?: string
+          receiver_phone?: string | null
+          receiver_postal_code?: string | null
+          receiver_state?: string | null
+          sender_address?: string | null
+          sender_city?: string | null
+          sender_email?: string | null
+          sender_name?: string
+          sender_phone?: string | null
+          sender_postal_code?: string | null
+          sender_state?: string | null
+          special_instructions?: string | null
+          status?: Database["public"]["Enums"]["shipment_status"]
+          tracking_id?: string
+          updated_at?: string
+          weight?: number | null
+        }
+        Relationships: []
+      }
+      tracking_events: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          location: string | null
+          shipment_id: string
+          status: Database["public"]["Enums"]["shipment_status"]
+          updated_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          location?: string | null
+          shipment_id: string
+          status: Database["public"]["Enums"]["shipment_status"]
+          updated_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          location?: string | null
+          shipment_id?: string
+          status?: Database["public"]["Enums"]["shipment_status"]
+          updated_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tracking_events_shipment_id_fkey"
+            columns: ["shipment_id"]
+            isOneToOne: false
+            referencedRelation: "shipments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      notify_admins: {
+        Args: { _body: string; _link: string; _title: string }
+        Returns: undefined
+      }
+      track_parcel: { Args: { _tracking_id: string }; Returns: Json }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "driver" | "customer"
+      shipment_status:
+        | "Pending"
+        | "Assigned"
+        | "Accepted"
+        | "Picked Up"
+        | "In Transit"
+        | "Out for Delivery"
+        | "Delivered"
+        | "Rejected"
+        | "Cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +522,19 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "driver", "customer"],
+      shipment_status: [
+        "Pending",
+        "Assigned",
+        "Accepted",
+        "Picked Up",
+        "In Transit",
+        "Out for Delivery",
+        "Delivered",
+        "Rejected",
+        "Cancelled",
+      ],
+    },
   },
 } as const
